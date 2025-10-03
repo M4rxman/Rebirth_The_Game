@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt7qj4rvpib2x"]
+[gd_scene load_steps=6 format=3 uid="uid://cchcrcrmmrise"]
 
 [ext_resource type="Script" uid="uid://bussnogx0oiql" path="res://Scenes/Player/player.gd" id="1_3uef2"]
+[ext_resource type="Script" uid="uid://cvjfl81d7rshp" path="res://Scenes/Player/SpringArmPivot.gd" id="2_a3d8c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cet7n"]
 
@@ -17,10 +18,15 @@ script = ExtResource("1_3uef2")
 shape = SubResource("CapsuleShape3D_cet7n")
 
 [node name="bodyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.71583325, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_ji1vj")
 
 [node name="camera_mount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06756103, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08816981, 0)
+script = ExtResource("2_a3d8c")
 
-[node name="Camera3D" type="Camera3D" parent="camera_mount"]
-transform = Transform3D(1, 0, 0, 0, 0.9965655, 0.08280821, 0, -0.08280821, 0.9965655, 0, 1.3695146, 2.9648042)
+[node name="SpringArm3D" type="SpringArm3D" parent="camera_mount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4118929, 1.3080688)
+
+[node name="Camera3D" type="Camera3D" parent="camera_mount/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9965655, 0.08280821, 0, -0.08280821, 0.9965655, 0, 0.022227407, 0.020395637)

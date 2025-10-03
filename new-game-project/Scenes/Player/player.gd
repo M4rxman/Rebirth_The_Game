@@ -1,30 +1,50 @@
 extends CharacterBody3D
 
+const LERP_VALUE : float = 0.15
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+var snap_vector : Vector3 = Vector3.DOWN
+var speed : float
 
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+@export_group("Movement variables")
+@export var walk_speed : float = 2.0
+@export var run_speed : float = 50.0
+@export var jump_strength : float = 15.0
+@export var gravity : float = 50.0
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+const ANIMATION_BLEND : float = 7.0
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+@onready var spring_arm_pivot : Node3D = $camera_mount
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+func _physics_process(delta):
+	var move_direction : Vector3 = Vector3.ZERO
+	move_direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	move_direction.z = Input.get_action_strength("move_backwards") - Input.get_action_strength("move_forwards")
+	move_direction = move_direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+	
+	velocity.y -= gravity * delta
+	
+	if Input.is_action_pressed("quit"):
+		get_tree().quit()
+	
+	if Input.is_action_pressed("run"):
+		speed = run_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		speed = walk_speed
+	
+	velocity.x = move_direction.x * speed
+	velocity.z = move_direction.z * speed
+	
+	#if move_direction:
+		#player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(velocity.x, velocity.z), LERP_VALUE)
+	
+	var just_landed := is_on_floor() and snap_vector == Vector3.ZERO
+	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
+	if is_jumping:
+		velocity.y = jump_strength
+		snap_vector = Vector3.ZERO
+	elif just_landed:
+		snap_vector = Vector3.DOWN
+	
+	apply_floor_snap()
 	move_and_slide()
+	#animate(delta)
