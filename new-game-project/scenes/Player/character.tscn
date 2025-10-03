@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctw00dvg5ki68"]
+[gd_scene load_steps=5 format=3 uid="uid://ctw00dvg5ki68"]
 
-[ext_resource type="Script" uid="uid://de40sei8paqmy" path="res://Thirdperson/Scripts/Characters/SpringArmPivot.gd" id="1_ih3hh"]
+[ext_resource type="Script" uid="uid://do5tsw1adwhss" path="res://scripts/Player/PlayerScript.gd" id="1_i1e03"]
+[ext_resource type="Script" uid="uid://dpa2jic2jojq3" path="res://scripts/Player/SpringArmPivot.gd" id="2_i1e03"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_i1e03"]
 radial_segments = 8
@@ -11,6 +12,7 @@ points = PackedVector3Array(-0.015048027, -0.3171438, -0.36246356, 0.014978413, 
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 slide_on_ceiling = false
+script = ExtResource("1_i1e03")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_i1e03")
@@ -19,11 +21,11 @@ mesh = SubResource("SphereMesh_i1e03")
 shape = SubResource("ConvexPolygonShape3D_iaeqo")
 
 [node name="SpringArmPivot" type="Node3D" parent="."]
-script = ExtResource("1_ih3hh")
+script = ExtResource("2_i1e03")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="SpringArmPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31666994, 0)
-spring_length = 2.0
+spring_length = 3.0
 margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="SpringArmPivot/SpringArm3D"]
