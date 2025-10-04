@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctw00dvg5ki68"]
+[gd_scene load_steps=6 format=3 uid="uid://ctw00dvg5ki68"]
 
 [ext_resource type="Script" uid="uid://do5tsw1adwhss" path="res://scripts/Player/PlayerScript.gd" id="1_i1e03"]
 [ext_resource type="Script" uid="uid://dpa2jic2jojq3" path="res://scripts/Player/SpringArmPivot.gd" id="2_i1e03"]
+[ext_resource type="PackedScene" uid="uid://ffmacfd1nhsf" path="res://scenes/Egg.tscn" id="2_iaeqo"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_i1e03"]
 radial_segments = 8
@@ -29,3 +30,7 @@ spring_length = 3.0
 margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="SpringArmPivot/SpringArm3D"]
+
+[node name="Egg" parent="." instance=ExtResource("2_iaeqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+visible = true

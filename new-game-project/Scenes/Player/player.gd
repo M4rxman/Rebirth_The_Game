@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+var character_state : int 
+var character_generation : int = 0
+
 const LERP_VALUE : float = 0.15
 
 var snap_vector : Vector3 = Vector3.DOWN
@@ -14,6 +17,13 @@ var speed : float
 const ANIMATION_BLEND : float = 7.0
 
 @onready var spring_arm_pivot : Node3D = $camera_mount
+@onready var character_slot = $bodyMesh
+@onready var egg_slot = $Egg 
+
+func _ready() -> void:
+	character_slot.visible = true
+	egg_slot.hide()
+	speed = walk_speed
 
 func _physics_process(delta):
 	var move_direction : Vector3 = Vector3.ZERO
@@ -45,6 +55,30 @@ func _physics_process(delta):
 	elif just_landed:
 		snap_vector = Vector3.DOWN
 	
+	if Input.is_action_just_pressed("egg_action"):
+		switch_to_egg()
+	
 	apply_floor_snap()
 	move_and_slide()
 	#animate(delta)
+
+func switch_to_character():
+	walk_speed = 2.0
+	run_speed = 50.0
+	
+	speed = walk_speed
+	character_slot.visible = true
+	egg_slot.visible = false
+
+func switch_to_egg():
+	print("swithced to the egg")
+	character_generation += 1
+	egg_slot.show()
+	
+	speed = 0
+	walk_speed = 0
+	run_speed = 0
+	
+	character_slot.visible = false
+	
+	egg_slot.hatch()

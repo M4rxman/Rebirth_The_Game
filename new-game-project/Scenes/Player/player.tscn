@@ -1,32 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cchcrcrmmrise"]
+[gd_scene load_steps=3 format=3 uid="uid://cchcrcrmmrise"]
 
-[ext_resource type="Script" uid="uid://bussnogx0oiql" path="res://Scenes/Player/player.gd" id="1_3uef2"]
-[ext_resource type="Script" uid="uid://cvjfl81d7rshp" path="res://Scenes/Player/SpringArmPivot.gd" id="2_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://dg5wyhc4ykoef" path="res://scenes/World/world.tscn" id="1_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://cchcrcrmmrise" path="res://Scenes/Player/player.tscn" id="2_xpcdj"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cet7n"]
+[node name="main" type="Node3D"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0pce"]
-albedo_color = Color(0.278431, 1, 1, 1)
+[node name="map" parent="." instance=ExtResource("1_a3d8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0446424, -0.0223503, -0.00300026)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ji1vj"]
-material = SubResource("StandardMaterial3D_v0pce")
-
-[node name="player" type="CharacterBody3D" groups=["player"]]
-script = ExtResource("1_3uef2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_cet7n")
-
-[node name="bodyMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.71583325, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_ji1vj")
-
-[node name="camera_mount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08816981, 0)
-script = ExtResource("2_a3d8c")
-
-[node name="SpringArm3D" type="SpringArm3D" parent="camera_mount"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4118929, 1.3080688)
-
-[node name="Camera3D" type="Camera3D" parent="camera_mount/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.9965655, 0.08280821, 0, -0.08280821, 0.9965655, 0, 0.022227407, 0.020395637)
+[node name="player" parent="." instance=ExtResource("2_xpcdj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7078, 18.8744, 21.1171)
