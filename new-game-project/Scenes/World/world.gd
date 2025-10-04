@@ -8,6 +8,11 @@ var unload_distance := 2
 var load_distance := 2
 
 @export var chunkScene := preload("res://Scenes/World/basic_chunk.tscn")
+# Add POI scene and spawn chance (tweak path/chance as needed)
+@export var poi_scene := preload("res://Scenes/Items/eat.tscn")
+@export var poi_spawn_chance := 0.005
+var pois: Dictionary = {}
+
 @onready var player := get_tree().get_first_node_in_group("player")
 
 func _ready():
@@ -47,11 +52,23 @@ func unload_distant_chunks():
 			chunks_to_remove.append(chunk_pos)
 	for chunk_pos in chunks_to_remove:
 		var chunk = chunks[chunk_pos]
+		# free POIs associated with this chunk if any
+		if pois.has(chunk_pos):
+			for p in pois[chunk_pos]:
+				if is_instance_valid(p):
+					p.queue_free()
+			pois.erase(chunk_pos)
 		chunk.queue_free()
 		chunks.erase(chunk_pos)
 
 func generate_chunk(chunk_pos: Vector3):
 	if chunks.has(chunk_pos):
+		# Remove any old chunk and its POIs first
+		if pois.has(chunk_pos):
+			for p in pois[chunk_pos]:
+				if is_instance_valid(p):
+					p.queue_free()
+			pois.erase(chunk_pos)
 		chunks[chunk_pos].queue_free()
 		chunks.erase(chunk_pos)
 	if not height_map.has(chunk_pos):
@@ -76,6 +93,30 @@ func generate_chunk(chunk_pos: Vector3):
 	var shape = ConcavePolygonShape3D.new()
 	shape.set_faces(surface_tool.commit_to_arrays()[Mesh.ARRAY_VERTEX])
 	collision_shape.shape = shape
+
+	# Spawn POIs on the surface using the height map
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var spawned := []
+	for z in range(int(chunk_size.z)):
+		for x in range(int(chunk_size.x)):
+			# skip if no surface or below ground
+			var h = heights[z][x]
+			if h <= 0:
+				continue
+			if rng.randf() < poi_spawn_chance:
+				var poi = poi_scene.instantiate()
+				# position at center of cell, slight offset above surface
+				var pos = Vector3(x + 0.5, h + 0.1, z + 0.5) + chunk_pos
+				# add POI to chunk BEFORE setting global_transform to avoid is_inside_tree() warning
+				chunk.add_child(poi)
+				poi.global_transform = Transform3D(poi.transform.basis, pos)
+				# make the POI a child of the chunk so it moves/frees with it
+				# (already added above)
+				spawned.append(poi)
+	# record spawned POIs for cleanup/regeneration
+	if spawned.size() > 0:
+		pois[chunk_pos] = spawned
 
 func generate_heights(chunk_pos: Vector3) -> Array:
 	var heights = []
