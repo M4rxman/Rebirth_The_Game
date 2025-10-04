@@ -1,16 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://cabgrr2bvykhs"]
+[gd_scene load_steps=13 format=3 uid="uid://cabgrr2bvykhs"]
 
-[ext_resource type="Script" uid="uid://c7554dwiw4quj" path="res://scenes/Player/spider_bot/start_ik.gd" id="1_n6l5c"]
-[ext_resource type="PackedScene" uid="uid://b1n5rqw53onuo" path="res://scenes/Player/spider_bot/spider_bot_model.gltf" id="1_vovvw"]
-[ext_resource type="Script" uid="uid://cfvm5ylrw0kqf" path="res://scenes/Player/spider_bot/spider_bot.gd" id="2_kfpvc"]
-[ext_resource type="Script" uid="uid://1g3w36rtmt44" path="res://scenes/Player/spider_bot/step_ray.gd" id="4_8a6ki"]
-[ext_resource type="Script" uid="uid://cvppf16by64p3" path="res://scenes/Player/spider_bot/ik_target.gd" id="4_p25cf"]
-[ext_resource type="Script" uid="uid://cvjfl81d7rshp" path="res://scenes/Player/SpringArmPivot.gd" id="4_q4v4l"]
-[ext_resource type="Script" uid="uid://dji4w86dfmjly" path="res://scenes/Player/spider_bot/StepTargetContainer.gd" id="5_yguvh"]
-[ext_resource type="PackedScene" uid="uid://ffmacfd1nhsf" path="res://scenes/Egg/Egg.tscn" id="8_muisj"]
+[ext_resource type="Script" uid="uid://c7554dwiw4quj" path="res://Scenes/Player/spider_bot/start_ik.gd" id="1_n6l5c"]
+[ext_resource type="PackedScene" uid="uid://b1n5rqw53onuo" path="res://Scenes/Player/spider_bot/spider_bot_model.gltf" id="1_vovvw"]
+[ext_resource type="Script" uid="uid://cfvm5ylrw0kqf" path="res://Scenes/Player/spider_bot/spider_bot.gd" id="2_kfpvc"]
+[ext_resource type="Script" uid="uid://1g3w36rtmt44" path="res://Scenes/Player/spider_bot/step_ray.gd" id="4_8a6ki"]
+[ext_resource type="Script" uid="uid://cvppf16by64p3" path="res://Scenes/Player/spider_bot/ik_target.gd" id="4_p25cf"]
+[ext_resource type="Script" uid="uid://cvjfl81d7rshp" path="res://Scenes/Player/SpringArmPivot.gd" id="4_q4v4l"]
+[ext_resource type="Script" uid="uid://dji4w86dfmjly" path="res://Scenes/Player/spider_bot/StepTargetContainer.gd" id="5_yguvh"]
+[ext_resource type="PackedScene" uid="uid://ffmacfd1nhsf" path="res://Scenes/Egg/Egg.tscn" id="8_muisj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwxtc"]
 albedo_color = Color(0.396078, 0.396078, 0.396078, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kh3g3"]
+points = PackedVector3Array(0.8044668, 2.8985083, 0.9787539, 0.9928348, 2.8979568, 0.7894549, 0.80239654, 0.02388328, 0.9287433, -0.98994774, 2.9001973, 0.79088384, -0.9922563, 0.062073514, 0.79291713, 0.7980492, 0.078988425, -0.99565077, 0.79719824, 2.698915, -0.8076454, -0.9834948, 0.075006135, -0.81020516, -0.9834482, 2.515716, -0.81017077, -0.80262446, 0.06206834, 0.98254156, 0.9852905, 0.07901179, -0.80840945, -0.78927577, 3.0203671, 0.5455538, 0.9956296, 0.063750505, 0.7919165, -0.8007562, 2.9002023, 0.98006827, 0.9863898, 2.5141485, -0.8092207, -0.7513721, 0.02248278, -0.9543828, 0.7926813, 2.4595373, -0.9894946, -0.7889494, 2.4606767, -0.9906058, -0.26459998, 0.19559373, -1.0840085, 0.8490882, 3.03563, 0.74017024, -0.7925438, 2.6989844, -0.8074825, 0.8063692, 0.06381763, 0.98127186, 0.9482001, 0.01630013, -0.76875615, -0.9400582, 0.022113182, 0.7885772, -0.79553723, 0.07499447, -0.99816275, 0.7980058, 3.0279515, 0.54875267, -0.7512939, 3.0374606, 0.8353751, 0.28760985, 0.007708544, 0.9396085, -0.945425, 0.013524989, -0.77001333, 0.26459998, 0.21814352, -1.0670935, 0.6994516, 2.6457398, -0.89635146, 0.80713457, 0.014964516, -0.91138655)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg2m1"]
 albedo_color = Color(1, 0, 0, 1)
@@ -29,6 +32,11 @@ transform = Transform3D(3.06884, 0, 0, 0, 3.06884, 0, 0, 0, 3.06884, 0.115582, 0
 
 [node name="Body_2" parent="Armature/Skeleton3D/Body_2" index="0"]
 material_override = SubResource("StandardMaterial3D_dwxtc")
+
+[node name="Area3D" type="Area3D" parent="Armature/Skeleton3D/Body_2/Body_2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/Body_2/Body_2/Area3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_kh3g3")
 
 [node name="Cylinder" parent="Armature/Skeleton3D/Cylinder" index="0"]
 material_override = SubResource("StandardMaterial3D_dg2m1")

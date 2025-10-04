@@ -6,6 +6,9 @@ var character_generation : int = 0
 @export var move_speed: float = 5.0
 @export var turn_speed: float = 1.0
 @export var ground_offset: float = 0.5
+@export var ground_clearance: float = 0.6
+@export var ground_raycast_depth: float = 8.0
+@export var ground_collision_mask: int = 1
 
 @onready var fl_leg = $FrontLeftIKTarget
 @onready var fr_leg = $FrontRightIKTarget
@@ -36,6 +39,9 @@ func _process(delta):
 		switch_to_egg()
 	
 	_handle_movement(delta)
+
+	# ensure we don't sink into procedurally generated terrain
+	_ensure_clearance(delta)
 	
 func _handle_movement(delta):
 	var dir = Input.get_axis('move_backwards', 'move_forwards')
@@ -74,3 +80,26 @@ func switch_to_egg():
 	character_slot.visible = false
 	
 	egg_slot.hatch()
+
+func _ensure_clearance(delta: float) -> void:
+	# Raycast from above the spider downwards to find the terrain under the spider
+	var up_dir = transform.basis.y
+	var origin = global_position + up_dir * ground_raycast_depth
+	var target = global_position - up_dir * ground_raycast_depth
+	var exclude = [self]
+	var space = get_world_3d().direct_space_state
+	var params = PhysicsRayQueryParameters3D.new()
+	params.from = origin
+	params.to = target
+	params.exclude = exclude
+	params.collision_mask = ground_collision_mask
+	var result = space.intersect_ray(params)
+	if result:
+		var hit_pos = result.get("position", null)
+		if hit_pos != null:
+			# desired position keeps a fixed clearance above the hit point (world up)
+			var desired_global = Vector3(global_position.x, hit_pos.y + ground_clearance, global_position.z)
+			# only raise if we're below desired clearance
+			if global_position.y < desired_global.y - 0.001:
+				var t = clamp(move_speed * delta * 2.0, 0.0, 1.0)
+				global_position = global_position.lerp(desired_global, t)

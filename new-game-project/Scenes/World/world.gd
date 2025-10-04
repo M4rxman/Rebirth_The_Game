@@ -124,7 +124,7 @@ func _complete_dig():
 			var local_pos = (dig_target_position - chunk_pos)
 			var x = int(local_pos.x)
 			var z = int(local_pos.z)
-			var y = int(local_pos.y)
+			var _y = int(local_pos.y)
 			var dig_amount = dig_request_amount / 15.0
 			if is_digging: dig_amount *= -1
 			_dig_height_calculation(heights, z, x , dig_amount, chunk_pos)
