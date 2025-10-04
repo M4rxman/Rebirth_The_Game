@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cchcrcrmmrise"]
+[gd_scene load_steps=7 format=3 uid="uid://cchcrcrmmrise"]
 
-[ext_resource type="Script" uid="uid://bussnogx0oiql" path="res://Scenes/Player/player.gd" id="1_3uef2"]
-[ext_resource type="Script" uid="uid://cvjfl81d7rshp" path="res://Scenes/Player/SpringArmPivot.gd" id="2_a3d8c"]
+[ext_resource type="Script" uid="uid://bussnogx0oiql" path="res://scenes/Player/player.gd" id="1_3uef2"]
+[ext_resource type="Script" uid="uid://cvjfl81d7rshp" path="res://scenes/Player/SpringArmPivot.gd" id="2_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://ffmacfd1nhsf" path="res://scenes/Egg/Egg.tscn" id="3_gqjuk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cet7n"]
 
@@ -30,3 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4118929, 1.3080688)
 
 [node name="Camera3D" type="Camera3D" parent="camera_mount/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.9965655, 0.08280821, 0, -0.08280821, 0.9965655, 0, 0.022227407, 0.020395637)
+
+[node name="Egg" parent="." instance=ExtResource("3_gqjuk")]
+visible = true
