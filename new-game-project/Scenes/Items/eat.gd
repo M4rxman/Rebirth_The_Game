@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	OS.shell_open("https://github.com/M4rxman/Rebirth_The_Game")
 
 
 func _on_body_entered(body: Node3D) -> void:
