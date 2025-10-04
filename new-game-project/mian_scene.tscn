@@ -1,0 +1,97 @@
+[gd_scene load_steps=16 format=3 uid="uid://cgntbyp6571p0"]
+
+[ext_resource type="PackedScene" uid="uid://ctw00dvg5ki68" path="res://scenes/Player/character.tscn" id="5_f23wa"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ik843"]
+load_path = "res://.godot/imported/Sky.png-dfc3546bb2316359758430773e495394.bptc.ctex"
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5v5vv"]
+panorama = SubResource("CompressedTexture2D_ik843")
+
+[sub_resource type="Sky" id="Sky_5ngqa"]
+sky_material = SubResource("PanoramaSkyMaterial_5v5vv")
+
+[sub_resource type="Environment" id="Environment_3q175"]
+background_mode = 2
+sky = SubResource("Sky_5ngqa")
+tonemap_mode = 3
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h11l"]
+albedo_color = Color(0.11885941, 0.11885941, 0.11885941, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2xr87"]
+material = SubResource("StandardMaterial3D_8h11l")
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y32ii"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpb6y"]
+albedo_color = Color(1, 0.22352941, 0.13725491, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n2btk"]
+material = SubResource("StandardMaterial3D_wpb6y")
+size = Vector3(10, 3, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a2jiv"]
+data = PackedVector3Array(-5, 1.5, 0.5, 5, 1.5, 0.5, -5, -1.5, 0.5, 5, 1.5, 0.5, 5, -1.5, 0.5, -5, -1.5, 0.5, 5, 1.5, -0.5, -5, 1.5, -0.5, 5, -1.5, -0.5, -5, 1.5, -0.5, -5, -1.5, -0.5, 5, -1.5, -0.5, 5, 1.5, 0.5, 5, 1.5, -0.5, 5, -1.5, 0.5, 5, 1.5, -0.5, 5, -1.5, -0.5, 5, -1.5, 0.5, -5, 1.5, -0.5, -5, 1.5, 0.5, -5, -1.5, -0.5, -5, 1.5, 0.5, -5, -1.5, 0.5, -5, -1.5, -0.5, 5, 1.5, 0.5, -5, 1.5, 0.5, 5, 1.5, -0.5, -5, 1.5, 0.5, -5, 1.5, -0.5, 5, 1.5, -0.5, -5, -1.5, 0.5, 5, -1.5, 0.5, -5, -1.5, -0.5, 5, -1.5, 0.5, 5, -1.5, -0.5, -5, -1.5, -0.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ojqf2"]
+left_to_right = -2.0
+size = Vector3(5, 5, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_en27p"]
+load_path = "res://.godot/imported/Green.png-785393e50879af8b23e128890b16b2b5.bptc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j18dd"]
+albedo_texture = SubResource("CompressedTexture2D_en27p")
+uv1_triplanar = true
+texture_filter = 5
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_oyqkk"]
+data = PackedVector3Array(-12.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -12.5, 2.5, -2.5, -2.5, -2.5, -2.5, 2.5, -2.5, -2.5, -12.5, 2.5, 2.5, -12.5, 2.5, -2.5, 2.5, -2.5, 2.5, -12.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -2.5, 2.5, -12.5, 2.5, -2.5, -12.5, 2.5, 2.5, -2.5, -2.5, -2.5, -12.5, 2.5, 2.5, -2.5, -2.5, 2.5, -2.5, -2.5, -2.5, -2.5, -2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, -2.5, 2.5, -2.5, 2.5, 2.5, -2.5, -2.5, -2.5, -2.5, -2.5)
+
+[node name="Mian scene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3q175")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866026, -0.433013, 0.249999, 0.5, -0.75, 0.433012, -1.3411e-07, 0.499999, 0.866026, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_split_1 = 0.07
+directional_shadow_split_2 = 0.12
+directional_shadow_split_3 = 0.2
+directional_shadow_blend_splits = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2xr87")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_y32ii")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
+mesh = SubResource("BoxMesh_n2btk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_a2jiv")
+
+[node name="Slope" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 4)
+mesh = SubResource("PrismMesh_ojqf2")
+surface_material_override/0 = SubResource("StandardMaterial3D_j18dd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Slope"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slope/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_oyqkk")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("5_f23wa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3044212, 0)
+slide_on_ceiling = true

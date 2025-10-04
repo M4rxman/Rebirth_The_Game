@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bussnogx0oiql" path="res://scenes/Player/player.gd" id="1_3uef2"]
 [ext_resource type="Script" uid="uid://cvjfl81d7rshp" path="res://scenes/Player/SpringArmPivot.gd" id="2_a3d8c"]
-[ext_resource type="PackedScene" path="res://scenes/Egg.tscn" id="3_gqjuk"]
+[ext_resource type="PackedScene" uid="uid://ffmacfd1nhsf" path="res://scenes/Egg/Egg.tscn" id="3_gqjuk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cet7n"]
 
