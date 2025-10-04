@@ -7,13 +7,13 @@ var speed : float
 
 @export_group("Movement variables")
 @export var walk_speed : float = 2.0
-@export var run_speed : float = 5.0
+@export var run_speed : float = 50.0
 @export var jump_strength : float = 15.0
 @export var gravity : float = 50.0
 
 const ANIMATION_BLEND : float = 7.0
 
-@onready var spring_arm_pivot : Node3D = $SpringArmPivot
+@onready var spring_arm_pivot : Node3D = $camera_mount
 
 func _physics_process(delta):
 	var move_direction : Vector3 = Vector3.ZERO
@@ -22,6 +22,9 @@ func _physics_process(delta):
 	move_direction = move_direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
 	
 	velocity.y -= gravity * delta
+	
+	if Input.is_action_pressed("quit"):
+		get_tree().quit()
 	
 	if Input.is_action_pressed("run"):
 		speed = run_speed
