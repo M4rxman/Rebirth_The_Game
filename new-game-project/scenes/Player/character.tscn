@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctw00dvg5ki68"]
+
+[ext_resource type="Script" uid="uid://do5tsw1adwhss" path="res://scripts/Player/PlayerScript.gd" id="1_i1e03"]
+[ext_resource type="Script" uid="uid://dpa2jic2jojq3" path="res://scripts/Player/SpringArmPivot.gd" id="2_i1e03"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_i1e03"]
+radial_segments = 8
+rings = 3
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iaeqo"]
+points = PackedVector3Array(-0.015048027, -0.3171438, -0.36246356, 0.014978413, 0.030060632, 0.48134702, -0.014987762, 0.030060736, 0.4813487, 0.015088202, 0.48487416, -0.030280905, 0.48135015, -0.030061392, -0.014983577, -0.4813505, 0.030060833, -0.014983298, -0.015097452, -0.4848726, 0.030280808, 0.014978579, 0.030060967, -0.48135242, 0.3491667, 0.34917453, 0.015123603, -0.34910247, 0.01512454, 0.34919617, 0.34916347, -0.015123464, 0.3491713, -0.015127821, 0.34916773, 0.34916773, -0.34914076, 0.34923446, -0.0151261985, -0.34913963, -0.34923333, -0.01512615, -0.34910247, -0.01512454, -0.34919617, 0.01511864, -0.34917045, 0.34917045, 0.3491667, -0.34917453, -0.015123603, 0.34916347, 0.015123464, -0.3491713, 0.01511864, 0.34917045, -0.34917045, -0.24126722, -0.34691855, 0.25638518, 0.25636348, -0.34689865, -0.24134545, 0.24125978, 0.3469212, 0.25638714, -0.24126722, 0.34691855, -0.25638518, 0.2563622, -0.34689692, 0.24134424, -0.25636673, 0.34689045, 0.24133976, 0.2563622, 0.34689692, -0.24134424, -0.24126843, -0.34692028, -0.25638643, 0.01511859, -0.34916928, -0.34916928, -0.4813505, -0.030060833, 0.014983298, 0.4813448, 0.030061057, -0.014983409, -0.014987595, -0.0300604, 0.48134333, 0.030276053, -0.48487535, -0.015093025)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+slide_on_ceiling = false
+script = ExtResource("1_i1e03")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_i1e03")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_iaeqo")
+
+[node name="SpringArmPivot" type="Node3D" parent="."]
+script = ExtResource("2_i1e03")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="SpringArmPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31666994, 0)
+spring_length = 3.0
+margin = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="SpringArmPivot/SpringArm3D"]
