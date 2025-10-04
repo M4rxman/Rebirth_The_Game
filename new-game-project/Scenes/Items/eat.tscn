@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://8csku1yp23ve"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2eq78"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1dbmr"]
+albedo_color = Color(1, 0.050980393, 1, 1)
+
+[node name="Eat" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6576899, 0, 0, 0, 0.5090015, 0, 0, 0, 1, 0, 1.0594467, 0)
+mesh = SubResource("CylinderMesh_2eq78")
+surface_material_override/0 = SubResource("StandardMaterial3D_1dbmr")
