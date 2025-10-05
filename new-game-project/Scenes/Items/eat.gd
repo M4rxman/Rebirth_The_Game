@@ -14,4 +14,6 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	# Only free this item if the entered body is the player (node must be in group "player")
 	if body and body.is_in_group("playergod"):
+		Globals.meal +=1
+		print(Globals.meal)
 		queue_free()
