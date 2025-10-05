@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cncw577t3r21v"]
+
+[ext_resource type="Texture2D" uid="uid://btwlpdwk2wa6s" path="res://Assets/Textures/ChatGPT_Image_4_._2025_._07_04_38.webp" id="1_ios0g"]
+
+[resource]
+albedo_color = Color(1, 0.22352941, 0.13725491, 1)
+albedo_texture = ExtResource("1_ios0g")

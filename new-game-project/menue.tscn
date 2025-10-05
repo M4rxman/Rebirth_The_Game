@@ -1,0 +1,143 @@
+[gd_scene load_steps=9 format=3 uid="uid://lui882s2fj78"]
+
+[ext_resource type="PackedScene" uid="uid://cgntbyp6571p0" path="res://mian_scene.tscn" id="1_llkvv"]
+[ext_resource type="Script" uid="uid://ld3prg72getu" path="res://scenes/main_menu.gd" id="1_yyipn"]
+[ext_resource type="FontFile" uid="uid://dkjgahgx84b7f" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_yyipn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2o37"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5sfr"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3o4i"]
+bg_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 4
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6gme"]
+bg_color = Color(0.70796657, 0.7079665, 0.7079665, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 4
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_likgn"]
+
+[node name="Menue" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yyipn")
+
+[node name="Node3D" type="Node3D" parent="Control"]
+
+[node name="Mian scene" parent="Control/Node3D" instance=ExtResource("1_llkvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8327069, -4.3531103)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Node3D/Mian scene"]
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="SubViewport" type="SubViewport" parent="Control/Node3D/Mian scene/SubViewportContainer"]
+handle_input_locally = false
+canvas_cull_mask = 4294966273
+oversampling = false
+size = Vector2i(800, 600)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/Node3D/Mian scene/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5340557, -2.058114)
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_u2o37")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.5
+offset_top = -100.0
+offset_right = 171.5
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.42745098)
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_yyipn")
+theme_override_font_sizes/font_size = 31
+text = "SuperDuperName"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control/Panel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_p5sfr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a3o4i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k6gme")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_likgn")
+text = "Play"
+
+[node name="Button2" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_p5sfr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a3o4i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k6gme")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_likgn")
+text = "Credits"
+
+[node name="Button3" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_p5sfr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a3o4i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k6gme")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_likgn")
+text = "Exit"
+
+[connection signal="pressed" from="Control/Panel/VBoxContainer/Button" to="Control" method="_on_play_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/Button2" to="Control" method="_on_credits_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/Button3" to="Control" method="_on_exit_pressed"]
