@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://hpkatjscs0x4"]
+
+[ext_resource type="PackedScene" uid="uid://mfolopgaa7gd" path="res://scenes/Egg/Untitled.blend" id="1_8vuwn"]
+[ext_resource type="Texture2D" uid="uid://c7usp3wtsvk1n" path="res://scenes/Egg/normal.png" id="2_15ban"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ple2"]
+albedo_texture = ExtResource("2_15ban")
+
+[sub_resource type="Shader" id="Shader_8vuwn"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.5.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_b, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+
+	// Albedo Texture Force sRGB: Enabled
+	albedo_tex.rgb = mix(
+			pow((albedo_tex.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)),
+			albedo_tex.rgb.rgb * (1.0 / 12.92),
+			lessThan(albedo_tex.rgb, vec3(0.04045)));
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(0.0, 0.0, 1.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_15ban"]
+render_priority = 0
+shader = SubResource("Shader_8vuwn")
+shader_parameter/albedo = Color(1.3365372, 0.15026979, 0.25318515, 1)
+shader_parameter/texture_albedo = ExtResource("2_15ban")
+shader_parameter/albedo_texture_size = Vector2i(740, 493)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8vuwn"]
+points = PackedVector3Array(-0.16116358, -0.4987519, -1.1334859, 0.03275956, 0.086587444, 1.2371964, 0.41578767, 0.088312216, 1.1340692, -0.06468643, 1.8953822, -0.11345993, -1.227443, -0.011960159, 0.12968926, 0.9079213, -0.8876846, 0.032897104, 0.9440834, 0.6629756, -0.49476084, -0.35941693, -1.1942766, 0.22946987, -0.35124213, 1.5271393, -0.68711674, -0.645834, 1.5882885, 0.37237236, 0.6543695, 1.5223192, 0.4151482, 1.0961671, 0.037624512, 0.6128383, -1.0734042, -0.057140645, -0.6405324, 0.61456084, -0.10859878, -1.0814289, -0.5993658, -0.49996838, 1.0068436, 0.42025393, -0.88277924, 0.80735683, 0.37267783, 1.5883086, -0.64572227, 0.033057053, -1.1352785, -0.5518491, -0.88848484, -0.88498884, -0.11221201, 0.12973136, 1.5876758, 0.7117957, 1.245121, -0.011896771, -0.06374581, -0.063140176, 0.1356118, -1.2146537, -0.6324357, 0.18508604, 1.0300854, -0.68708205, 1.5272907, -0.3511498, 1.0066645, -0.500006, -0.5995106, 0.7130883, 1.5899278, -0.11236794, -0.6356345, 0.088662066, -1.0655857, -0.45347372, -0.8891996, -0.79428816, 0.46850386, -0.8819292, -0.7890467, -1.0815076, -0.10859218, 0.61426705, 0.37726873, -1.195361, 0.1805363, 0.9991646, -0.4937867, 0.6126866)
+
+[node name="Untitled" instance=ExtResource("1_8vuwn")]
+
+[node name="Camera" parent="." index="1"]
+visible = false
+
+[node name="Sphere" parent="." index="2"]
+visible = false
+
+[node name="Sphere_001" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_6ple2")
+surface_material_override/0 = SubResource("ShaderMaterial_15ban")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sphere_001" index="0"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sphere_001/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_8vuwn")

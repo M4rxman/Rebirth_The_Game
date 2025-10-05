@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://igb3hcikpaan"]
+
+[ext_resource type="PackedScene" uid="uid://chdqub5051fw4" path="res://Assets/Models/egg/Untitled.blend" id="1_ip2rc"]
+
+[node name="Untitled" instance=ExtResource("1_ip2rc")]
+
+[node name="Light" parent="." index="0"]
+visible = false
+
+[node name="Camera" parent="." index="1"]
+visible = false
+
+[node name="Sphere" parent="." index="2"]
+visible = false
