@@ -15,7 +15,7 @@ var _egg_spawn_transform = null
 @export var egg_opened: PackedScene = preload("res://Scenes/Egg/brokenegg.tscn")
 @export var egg_duration: float = 3.0
 @export var max_hp : float = 100.0
-@export var hp_depletion_rate : float = 5.0
+@export var hp_depletion_rate : float = 3.0
 var current_hp: float = 100.0
 var is_alive: bool = true
 
@@ -72,7 +72,7 @@ func _process(delta):
 	var distance = transform.basis.y.dot(target_pos - position)
 	position = lerp(position, position + transform.basis.y * distance, move_speed * delta)
 	
-	if Input.is_action_just_pressed("egg_action") and Globals.meal>Globals.character_generation*5:
+	if Input.is_action_just_pressed("egg_action") and Globals.meal>Globals.character_generation*2:
 		if not _is_transforming:
 			start_egg_sequence()
 	

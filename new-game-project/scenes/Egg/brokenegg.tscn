@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://chdqub5051fw4" path="res://Assets/Models/egg/Untitled.blend" id="1_ip2rc"]
 
 [node name="Untitled" instance=ExtResource("1_ip2rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.716722, 0)
 
 [node name="Light" parent="." index="0"]
 visible = false
