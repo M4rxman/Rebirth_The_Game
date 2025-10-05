@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://lui882s2fj78"]
 
-[ext_resource type="PackedScene" uid="uid://cgntbyp6571p0" path="res://mian_scene.tscn" id="1_llkvv"]
-[ext_resource type="Script" uid="uid://ld3prg72getu" path="res://scenes/main_menu.gd" id="1_yyipn"]
-[ext_resource type="FontFile" uid="uid://dkjgahgx84b7f" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_yyipn"]
+[ext_resource type="Script" uid="uid://ld3prg72getu" path="res://scenes/World/main_menu.gd" id="1_5gaxv"]
+[ext_resource type="PackedScene" uid="uid://cgntbyp6571p0" path="res://mian_scene.tscn" id="2_ax5h5"]
+[ext_resource type="FontFile" uid="uid://dkjgahgx84b7f" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_hxhx7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2o37"]
 
@@ -39,11 +39,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_yyipn")
+script = ExtResource("1_5gaxv")
 
 [node name="Node3D" type="Node3D" parent="Control"]
 
-[node name="Mian scene" parent="Control/Node3D" instance=ExtResource("1_llkvv")]
+[node name="Mian scene" parent="Control/Node3D" instance=ExtResource("2_ax5h5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8327069, -4.3531103)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Node3D/Mian scene"]
@@ -89,7 +89,7 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.42745098)
 theme_override_constants/shadow_offset_y = 4
-theme_override_fonts/font = ExtResource("2_yyipn")
+theme_override_fonts/font = ExtResource("3_hxhx7")
 theme_override_font_sizes/font_size = 31
 text = "Borneo"
 horizontal_alignment = 1
