@@ -1,56 +1,51 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgntbyp6571p0"]
+[gd_scene load_steps=15 format=3 uid="uid://cgntbyp6571p0"]
 
-[ext_resource type="PackedScene" uid="uid://ctw00dvg5ki68" path="res://scenes/Player/character.tscn" id="5_f23wa"]
+[ext_resource type="Material" uid="uid://cncw577t3r21v" path="res://Assets/Materials/new_standard_material_3d.tres" id="1_csjta"]
+[ext_resource type="Texture2D" uid="uid://btwlpdwk2wa6s" path="res://Assets/Textures/ChatGPT_Image_4_._2025_._07_04_38.webp" id="2_kl68b"]
+[ext_resource type="ArrayMesh" uid="uid://bhyy7udjkyoa7" path="res://Assets/Models/egg.obj" id="3_kl68b"]
+[ext_resource type="Script" uid="uid://csxaruakrlwb2" path="res://Assets/omni_light_3d.gd" id="4_tyy6p"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ik843"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_csjta"]
 load_path = "res://.godot/imported/Sky.png-dfc3546bb2316359758430773e495394.bptc.ctex"
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5v5vv"]
-panorama = SubResource("CompressedTexture2D_ik843")
+panorama = SubResource("CompressedTexture2D_csjta")
 
-[sub_resource type="Sky" id="Sky_5ngqa"]
+[sub_resource type="Sky" id="Sky_kl68b"]
 sky_material = SubResource("PanoramaSkyMaterial_5v5vv")
 
 [sub_resource type="Environment" id="Environment_3q175"]
 background_mode = 2
-sky = SubResource("Sky_5ngqa")
+sky = SubResource("Sky_kl68b")
 tonemap_mode = 3
+tonemap_exposure = 0.8
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0963
+volumetric_fog_albedo = Color(1, 0.6666667, 0.62352943, 1)
+volumetric_fog_emission = Color(0.36706161, 0, 0, 1)
+volumetric_fog_detail_spread = 2.6390157
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h11l"]
-albedo_color = Color(0.11885941, 0.11885941, 0.11885941, 1)
+albedo_color = Color(1, 0.22352941, 0.13725491, 1)
+albedo_texture = ExtResource("2_kl68b")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2xr87"]
 material = SubResource("StandardMaterial3D_8h11l")
-size = Vector2(50, 50)
+size = Vector2(10, 10)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y32ii"]
 data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpb6y"]
-albedo_color = Color(1, 0.22352941, 0.13725491, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_n2btk"]
-material = SubResource("StandardMaterial3D_wpb6y")
-size = Vector3(10, 3, 1)
+material = ExtResource("1_csjta")
+size = Vector3(10, 10, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a2jiv"]
 data = PackedVector3Array(-5, 1.5, 0.5, 5, 1.5, 0.5, -5, -1.5, 0.5, 5, 1.5, 0.5, 5, -1.5, 0.5, -5, -1.5, 0.5, 5, 1.5, -0.5, -5, 1.5, -0.5, 5, -1.5, -0.5, -5, 1.5, -0.5, -5, -1.5, -0.5, 5, -1.5, -0.5, 5, 1.5, 0.5, 5, 1.5, -0.5, 5, -1.5, 0.5, 5, 1.5, -0.5, 5, -1.5, -0.5, 5, -1.5, 0.5, -5, 1.5, -0.5, -5, 1.5, 0.5, -5, -1.5, -0.5, -5, 1.5, 0.5, -5, -1.5, 0.5, -5, -1.5, -0.5, 5, 1.5, 0.5, -5, 1.5, 0.5, 5, 1.5, -0.5, -5, 1.5, 0.5, -5, 1.5, -0.5, 5, 1.5, -0.5, -5, -1.5, 0.5, 5, -1.5, 0.5, -5, -1.5, -0.5, 5, -1.5, 0.5, 5, -1.5, -0.5, -5, -1.5, -0.5)
 
-[sub_resource type="PrismMesh" id="PrismMesh_ojqf2"]
-left_to_right = -2.0
-size = Vector3(5, 5, 5)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_en27p"]
-load_path = "res://.godot/imported/Green.png-785393e50879af8b23e128890b16b2b5.bptc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j18dd"]
-albedo_texture = SubResource("CompressedTexture2D_en27p")
-uv1_triplanar = true
-texture_filter = 5
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_oyqkk"]
-data = PackedVector3Array(-12.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -12.5, 2.5, -2.5, -2.5, -2.5, -2.5, 2.5, -2.5, -2.5, -12.5, 2.5, 2.5, -12.5, 2.5, -2.5, 2.5, -2.5, 2.5, -12.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -2.5, 2.5, -12.5, 2.5, -2.5, -12.5, 2.5, 2.5, -2.5, -2.5, -2.5, -12.5, 2.5, 2.5, -2.5, -2.5, 2.5, -2.5, -2.5, -2.5, -2.5, -2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, -2.5, 2.5, -2.5, 2.5, 2.5, -2.5, -2.5, -2.5, -2.5, -2.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl68b"]
+albedo_texture = ExtResource("2_kl68b")
 
 [node name="Mian scene" type="Node3D"]
 
@@ -66,6 +61,8 @@ directional_shadow_split_3 = 0.2
 directional_shadow_blend_splits = true
 
 [node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014987469, 0, -0.00023460388)
+material_override = ExtResource("1_csjta")
 mesh = SubResource("PlaneMesh_2xr87")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
@@ -74,7 +71,7 @@ mesh = SubResource("PlaneMesh_2xr87")
 shape = SubResource("ConcavePolygonShape3D_y32ii")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
 mesh = SubResource("BoxMesh_n2btk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
@@ -82,16 +79,36 @@ mesh = SubResource("BoxMesh_n2btk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_a2jiv")
 
-[node name="Slope" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 4)
-mesh = SubResource("PrismMesh_ojqf2")
-surface_material_override/0 = SubResource("StandardMaterial3D_j18dd")
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 1.5, 1)
+mesh = SubResource("BoxMesh_n2btk")
+skeleton = NodePath("../Wall")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Slope"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Slope/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_oyqkk")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_a2jiv")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("5_f23wa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3044212, 0)
-slide_on_ceiling = true
+[node name="Wall3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 5, 1.5, 1)
+mesh = SubResource("BoxMesh_n2btk")
+skeleton = NodePath("../Wall")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_a2jiv")
+
+[node name="Egg" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.42209047, 0, -0.35417596, 0, 0.551, 0, 0.35417596, 0, 0.42209047, -1.5, 0, -0.5)
+material_override = SubResource("StandardMaterial3D_kl68b")
+mesh = ExtResource("3_kl68b")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Egg"]
+transform = Transform3D(0.86, 0, -5.648851e-08, 0, 0.86, 0, 5.648851e-08, 0, 0.86, -0.99483824, 0, 0.15260386)
+light_color = Color(1.0964829, 0.7583465, 0.7711871, 1)
+light_energy = 2.322
+light_indirect_energy = 0.6
+light_volumetric_fog_energy = 25.75
+shadow_enabled = true
+script = ExtResource("4_tyy6p")

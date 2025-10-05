@@ -1,8 +1,5 @@
 extends CharacterBody3D
 
-var character_state : int 
-var character_generation : int = 0
-
 const LERP_VALUE : float = 0.15
 
 var snap_vector : Vector3 = Vector3.DOWN
@@ -72,7 +69,7 @@ func switch_to_character():
 
 func switch_to_egg():
 	print("swithced to the egg")
-	character_generation += 1
+	Globals.character_generation += 1
 	egg_slot.show()
 	
 	speed = 0
