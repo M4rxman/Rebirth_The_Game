@@ -21,4 +21,4 @@ func _on_exit_pressed() -> void:
 
 
 func _on_credits_pressed() -> void:
-	pass # Replace with function body.
+	OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")

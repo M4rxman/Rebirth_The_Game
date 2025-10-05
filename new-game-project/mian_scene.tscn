@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgntbyp6571p0"]
+[gd_scene load_steps=15 format=3 uid="uid://cgntbyp6571p0"]
 
 [ext_resource type="Material" uid="uid://cncw577t3r21v" path="res://Assets/Materials/new_standard_material_3d.tres" id="1_csjta"]
 [ext_resource type="Texture2D" uid="uid://btwlpdwk2wa6s" path="res://Assets/Textures/ChatGPT_Image_4_._2025_._07_04_38.webp" id="2_kl68b"]
 [ext_resource type="ArrayMesh" uid="uid://bhyy7udjkyoa7" path="res://Assets/Models/egg.obj" id="3_kl68b"]
+[ext_resource type="Script" uid="uid://csxaruakrlwb2" path="res://omni_light_3d.gd" id="4_tyy6p"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_csjta"]
 load_path = "res://.godot/imported/Sky.png-dfc3546bb2316359758430773e495394.bptc.ctex"
@@ -17,7 +18,13 @@ sky_material = SubResource("PanoramaSkyMaterial_5v5vv")
 background_mode = 2
 sky = SubResource("Sky_kl68b")
 tonemap_mode = 3
+tonemap_exposure = 0.8
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0963
+volumetric_fog_albedo = Color(1, 0.6666667, 0.62352943, 1)
+volumetric_fog_emission = Color(0.36706161, 0, 0, 1)
+volumetric_fog_detail_spread = 2.6390157
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h11l"]
 albedo_color = Color(1, 0.22352941, 0.13725491, 1)
@@ -96,3 +103,12 @@ shape = SubResource("ConcavePolygonShape3D_a2jiv")
 transform = Transform3D(0.42209047, 0, -0.35417596, 0, 0.551, 0, 0.35417596, 0, 0.42209047, -1.5, 0, -0.5)
 material_override = SubResource("StandardMaterial3D_kl68b")
 mesh = ExtResource("3_kl68b")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Egg"]
+transform = Transform3D(0.86, 0, -5.648851e-08, 0, 0.86, 0, 5.648851e-08, 0, 0.86, -0.99483824, 0, 0.15260386)
+light_color = Color(1.0964829, 0.7583465, 0.7711871, 1)
+light_energy = 2.322
+light_indirect_energy = 0.6
+light_volumetric_fog_energy = 25.75
+shadow_enabled = true
+script = ExtResource("4_tyy6p")

@@ -91,7 +91,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.42745098)
 theme_override_constants/shadow_offset_y = 4
 theme_override_fonts/font = ExtResource("2_yyipn")
 theme_override_font_sizes/font_size = 31
-text = "SuperDuperName"
+text = "Borneo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
