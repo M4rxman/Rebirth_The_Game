@@ -1,19 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0imxc6ykf153"]
+[gd_scene load_steps=4 format=3 uid="uid://c0imxc6ykf153"]
 
-[ext_resource type="Shader" uid="uid://e88wnw5jpvl8" path="res://Scenes/World/world.gdshader" id="1_a0kbf"]
-[ext_resource type="Texture2D" uid="uid://cr5i84s3mi8hk" path="res://Assets/grass.jpg" id="2_u5yfk"]
-[ext_resource type="Texture2D" uid="uid://suu852d0ilq6" path="res://Assets/Textures/rock.png" id="3_pvmub"]
+[ext_resource type="Shader" uid="uid://e88wnw5jpvl8" path="res://scenes/World/world.gdshader" id="1_a0kbf"]
+[ext_resource type="Texture2D" uid="uid://btwlpdwk2wa6s" path="res://Assets/Textures/ChatGPT_Image_4_._2025_._07_04_38.webp" id="2_151lp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fd6ho"]
 render_priority = 0
 shader = ExtResource("1_a0kbf")
-shader_parameter/WallTexScale = 3.0
-shader_parameter/WallColor = Color(1, 1, 1, 1)
-shader_parameter/TopTexScale = 3.0
-shader_parameter/TopColor = Color(0, 0.941176, 0.0784314, 1)
+shader_parameter/WallTexScale = 1.0
+shader_parameter/WallTex = ExtResource("2_151lp")
+shader_parameter/WallColor = Color(0.6156863, 0.007843138, 0, 0.47058824)
+shader_parameter/TopTexScale = 1.0
+shader_parameter/TopTex = ExtResource("2_151lp")
+shader_parameter/TopColor = Color(0.993123, 0.5378987, 0.13888115, 1)
 shader_parameter/BlendValues = Vector4(3, -2, 0, 1)
-shader_parameter/WallTex = ExtResource("3_pvmub")
-shader_parameter/TopTex = ExtResource("2_u5yfk")
 
 [node name="BasicChunk" type="MeshInstance3D"]
 material_override = SubResource("ShaderMaterial_fd6ho")
