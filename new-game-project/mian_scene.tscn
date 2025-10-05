@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://cncw577t3r21v" path="res://Assets/Materials/new_standard_material_3d.tres" id="1_csjta"]
 [ext_resource type="Texture2D" uid="uid://btwlpdwk2wa6s" path="res://Assets/Textures/ChatGPT_Image_4_._2025_._07_04_38.webp" id="2_kl68b"]
 [ext_resource type="ArrayMesh" uid="uid://bhyy7udjkyoa7" path="res://Assets/Models/egg.obj" id="3_kl68b"]
-[ext_resource type="Script" uid="uid://csxaruakrlwb2" path="res://omni_light_3d.gd" id="4_tyy6p"]
+[ext_resource type="Script" uid="uid://csxaruakrlwb2" path="res://Assets/omni_light_3d.gd" id="4_tyy6p"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_csjta"]
 load_path = "res://.godot/imported/Sky.png-dfc3546bb2316359758430773e495394.bptc.ctex"

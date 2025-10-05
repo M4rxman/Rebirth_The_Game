@@ -1,11 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://8csku1yp23ve"]
+[gd_scene load_steps=7 format=3 uid="uid://8csku1yp23ve"]
 
-[ext_resource type="Script" uid="uid://b7dayqvko4ffk" path="res://Scenes/Items/eat.gd" id="1_1dbmr"]
+[ext_resource type="Script" uid="uid://b7dayqvko4ffk" path="res://scenes/Items/eat.gd" id="1_1dbmr"]
+[ext_resource type="Shader" uid="uid://dgwj3uw5ooxnv" path="res://eat.gdshader" id="2_ylhyg"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2eq78"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1kqb"]
+render_priority = 0
+shader = ExtResource("2_ylhyg")
+shader_parameter/BaseColor = Color(1, 0.9, 0.4, 1)
+shader_parameter/ShineStrength = 1.5
+shader_parameter/WobbleSpeed = 2.0
+shader_parameter/WobbleAmount = 0.05
+shader_parameter/GlowSpeed = 2.5
+shader_parameter/GlowIntensity = 1.0
+shader_parameter/FresnelPower = 2.0
+shader_parameter/FresnelStrength = 1.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1dbmr"]
-albedo_color = Color(0.43529412, 0.25490198, 1, 1)
+render_priority = -1
+next_pass = SubResource("ShaderMaterial_w1kqb")
+transparency = 1
+albedo_color = Color(0.9254902, 0.36078432, 0.38431373, 0)
 metallic = 1.0
 metallic_specular = 0.53
 
@@ -15,7 +31,7 @@ metallic_specular = 0.53
 script = ExtResource("1_1dbmr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30081767, 0)
+transform = Transform3D(0.8350893, 0, 0, 0, 0.8350893, 0, 0, 0, 0.8350893, 0, 0.30081767, 0)
 mesh = SubResource("SphereMesh_2eq78")
 surface_material_override/0 = SubResource("StandardMaterial3D_1dbmr")
 
