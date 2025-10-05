@@ -9,6 +9,10 @@ var character_generation : int = 0
 @export var ground_clearance: float = 0.6
 @export var ground_raycast_depth: float = 8.0
 @export var ground_collision_mask: int = 1
+@export var max_hp : float = 100.0
+@export var hp_depletion_rate : float = 5.0
+var current_hp: float = 100.0
+var is_alive: bool = true
 
 @onready var fl_leg = $FrontLeftIKTarget
 @onready var fr_leg = $FrontRightIKTarget
@@ -19,12 +23,38 @@ var character_generation : int = 0
 @onready var character_slot = $Armature/Skeleton3D
 @onready var egg_slot = $Egg 
 
+var hp_bar: ProgressBar
+
 func _ready() -> void:
 	tank_tower.visible = true
 	character_slot.visible = true
 	egg_slot.hide()
+	
+	current_hp = max_hp
+	# Get HP bar reference from UI
+	hp_bar = get_tree().get_first_node_in_group("hp_bar")
+	if hp_bar:
+		hp_bar.max_value = max_hp
+		hp_bar.value = current_hp
 
 func _process(delta):
+	if is_alive:
+		# Deplete HP over time
+		current_hp -= hp_depletion_rate * delta
+		current_hp = clamp(current_hp, 0, max_hp)
+		
+		# Update HP bar
+		if hp_bar:
+			hp_bar.value = current_hp
+		
+		# Check for death
+		if current_hp <= 0:
+			die()
+			return
+	
+	if not is_alive:
+		return
+	
 	var plane1 = Plane(bl_leg.global_position, fl_leg.global_position, fr_leg.global_position)
 	var plane2 = Plane(fr_leg.global_position, br_leg.global_position, bl_leg.global_position)
 	var avg_normal = ((plane1.normal + plane2.normal) / 2).normalized()
@@ -74,14 +104,24 @@ func switch_to_character():
 	move_speed = 5.0
 	turn_speed = 1.0
 	
+	hp_depletion_rate = 5.0
+	current_hp = max_hp
+	if hp_bar:
+		hp_bar.value = current_hp
+	
 	tank_tower.visible = true
 	character_slot.visible = true
 	egg_slot.visible = false
 
 func switch_to_egg():
+	hp_depletion_rate = 0.0
 	print("swithced to the egg")
 	character_generation += 1
 	egg_slot.show()
+	
+	current_hp = max_hp
+	if hp_bar:
+		hp_bar.value = current_hp
 	
 	move_speed = 0
 	turn_speed = 0
@@ -112,3 +152,71 @@ func _ensure_clearance(delta: float) -> void:
 			if global_position.y < desired_global.y - 0.001:
 				var t = clamp(move_speed * delta * 2.0, 0.0, 1.0)
 				global_position = global_position.lerp(desired_global, t)
+
+
+func die():
+	if not is_alive:
+		return
+	
+	is_alive = false
+	print("Player died!")
+	
+	# Create simple explosion effect
+	create_explosion()
+	
+	# Hide the character
+	character_slot.visible = false
+	tank_tower.visible = false
+	
+	# Wait a moment then respawn or game over
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://scenes/World/menue.tscn")
+
+func create_explosion():
+	# Create multiple particle-like spheres that expand outward
+	for i in range(12):
+		var explosion_part = MeshInstance3D.new()
+		var sphere = SphereMesh.new()
+		sphere.radius = 0.3
+		sphere.height = 0.6
+		explosion_part.mesh = sphere
+		
+		# Create material
+		var mat = StandardMaterial3D.new()
+		mat.albedo_color = Color(1.0, 0.5, 0.0, 1.0)  # Orange explosion
+		mat.emission_enabled = true
+		mat.emission = Color(1.0, 0.3, 0.0)
+		mat.emission_energy_multiplier = 2.0
+		explosion_part.material_override = mat
+		
+		get_parent().add_child(explosion_part)
+		explosion_part.global_position = global_position
+		
+		# Random direction
+		var random_dir = Vector3(
+			randf_range(-1, 1),
+			randf_range(0.5, 1),
+			randf_range(-1, 1)
+		).normalized()
+		
+		# Animate the explosion part
+		var tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(explosion_part, "global_position", 
+			global_position + random_dir * randf_range(3, 6), 1.0)
+		tween.tween_property(explosion_part, "scale", Vector3.ZERO, 1.0)
+		
+		# Delete after animation
+		tween.finished.connect(func(): explosion_part.queue_free())
+
+func respawn():
+	# Reset position to spawn or current position
+	current_hp = max_hp
+	is_alive = true
+	character_slot.visible = true
+	tank_tower.visible = true
+	
+	if hp_bar:
+		hp_bar.value = current_hp
+	
+	print("Player respawned!")

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7usp3wtsvk1n"
-path.s3tc="res://.godot/imported/normal.png-d6d65e93d4370f6248431c8d26395565.s3tc.ctex"
+path.s3tc="res://.godot/imported/normal.png-9cd825170e2ef1515cb278faa0d968df.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Egg/normal.png"
-dest_files=["res://.godot/imported/normal.png-d6d65e93d4370f6248431c8d26395565.s3tc.ctex"]
+source_file="res://scenes/Egg/normal.png"
+dest_files=["res://.godot/imported/normal.png-9cd825170e2ef1515cb278faa0d968df.s3tc.ctex"]
 
 [params]
 
