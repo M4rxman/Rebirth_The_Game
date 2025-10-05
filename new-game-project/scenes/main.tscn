@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dq06rigecugjv"]
 
-[ext_resource type="PackedScene" uid="uid://dg5wyhc4ykoef" path="res://Scenes/World/world.tscn" id="1_6gs1o"]
-[ext_resource type="PackedScene" uid="uid://pqp5cx0ei2tb" path="res://Scenes/Player/meat_tank.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://cchcrcrmmrise" path="res://Scenes/Player/player.tscn" id="3_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://dg5wyhc4ykoef" path="res://scenes/World/world.tscn" id="1_6gs1o"]
+[ext_resource type="PackedScene" uid="uid://pqp5cx0ei2tb" path="res://scenes/Player/meat_tank.tscn" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://0tjdi2hexsxo" path="res://scenes/progress_bar.gd" id="3_sugp2"]
 
 [node name="main" type="Node3D"]
 
@@ -12,6 +12,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0446424, -0.0223503, -0.003
 [node name="Meat_tank" parent="." groups=["player", "playergod"] instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87203825, 0, -1.2705698)
 
-[node name="player" parent="Meat_tank" groups=["playergod"] instance=ExtResource("3_jjvhh")]
-visible = false
-collision_layer = 4
+[node name="ProgressBar" type="ProgressBar" parent="." groups=["hp_bar"]]
+top_level = true
+offset_left = 64.0
+offset_top = 512.0
+offset_right = 68.0
+offset_bottom = 539.0
+scale = Vector2(1.625, 1.625)
+size_flags_horizontal = 4
+size_flags_vertical = 1
+rounded = true
+script = ExtResource("3_sugp2")
