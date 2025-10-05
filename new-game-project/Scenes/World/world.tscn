@@ -1,8 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://dg5wyhc4ykoef"]
 
-[ext_resource type="Script" path="res://Scenes/World/world.gd" id="1_m56r5"]
+[ext_resource type="Script" uid="uid://b5rge0lhy5oej" path="res://Scenes/World/world.gd" id="1_m56r5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_secnb"]
+sky_top_color = Color(0.72934395, 0.2945248, 0.06252001, 1)
+sky_horizon_color = Color(0.3734077, 0.0638722, 0.053789355, 1)
+sky_curve = 1.5294713
+sky_cover_modulate = Color(0.9887536, 0.92703265, 0.92253625, 1)
+ground_horizon_color = Color(0.38685626, 0.104036085, 0.056223787, 1)
+ground_curve = 0.08
 
 [sub_resource type="Sky" id="Sky_avorj"]
 sky_material = SubResource("ProceduralSkyMaterial_secnb")
@@ -12,14 +18,18 @@ background_mode = 2
 background_energy_multiplier = 4.45
 sky = SubResource("Sky_avorj")
 ambient_light_source = 3
-ambient_light_energy = 3.44
+ambient_light_color = Color(0.36873788, 0.086988755, 0.049714163, 1)
+ambient_light_energy = 1.54
 tonemap_mode = 1
 fog_enabled = true
-fog_density = 0.0047
+fog_light_color = Color(0.5264545, 0.1768001, 0.13844153, 1)
+fog_light_energy = 1.94
+fog_density = 0.0145
 fog_sky_affect = 0.168
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0131
-volumetric_fog_emission = Color(0.721569, 0.721569, 0.721569, 1)
+volumetric_fog_density = 0.0915
+volumetric_fog_albedo = Color(0.1801722, 0.08164712, 0.021002328, 1)
+volumetric_fog_emission = Color(0.1707286, 0.019691996, 0.02003407, 1)
 volumetric_fog_anisotropy = 0.61
 volumetric_fog_length = 85.56
 volumetric_fog_detail_spread = 1.86607

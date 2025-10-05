@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://lui882s2fj78"]
+[gd_scene load_steps=10 format=3 uid="uid://lui882s2fj78"]
 
 [ext_resource type="Script" uid="uid://ld3prg72getu" path="res://scenes/World/main_menu.gd" id="1_5gaxv"]
 [ext_resource type="PackedScene" uid="uid://cgntbyp6571p0" path="res://mian_scene.tscn" id="2_ax5h5"]
 [ext_resource type="FontFile" uid="uid://dkjgahgx84b7f" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_hxhx7"]
+[ext_resource type="AudioStream" uid="uid://hwn3stq3dif6" path="res://music/HP294_drumIntro.mp3" id="4_ax5h5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2o37"]
 
@@ -137,6 +138,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_a3o4i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_k6gme")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_likgn")
 text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ax5h5")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Control/Panel/VBoxContainer/Button" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/Button2" to="Control" method="_on_credits_pressed"]
