@@ -21,4 +21,5 @@ func _on_exit_pressed() -> void:
 
 
 func _on_credits_pressed() -> void:
+	OS.shell_open("https://github.com/M4rxman/Rebirth_The_Game")
 	OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
