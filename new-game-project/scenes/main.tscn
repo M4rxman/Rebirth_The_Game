@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq06rigecugjv"]
+[gd_scene load_steps=4 format=3 uid="uid://dq06rigecugjv"]
 
 [ext_resource type="PackedScene" uid="uid://dg5wyhc4ykoef" path="res://Scenes/World/world.tscn" id="1_6gs1o"]
 [ext_resource type="PackedScene" uid="uid://pqp5cx0ei2tb" path="res://Scenes/Player/meat_tank.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cchcrcrmmrise" path="res://Scenes/Player/player.tscn" id="3_jjvhh"]
 
 [node name="main" type="Node3D"]
 
@@ -10,3 +11,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0446424, -0.0223503, -0.003
 
 [node name="Meat_tank" parent="." groups=["player", "playergod"] instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87203825, 0, -1.2705698)
+
+[node name="player" parent="Meat_tank" groups=["playergod"] instance=ExtResource("3_jjvhh")]
+visible = false
+collision_layer = 4
