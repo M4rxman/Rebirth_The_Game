@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://dq06rigecugjv"]
 
 [ext_resource type="PackedScene" uid="uid://dg5wyhc4ykoef" path="res://scenes/World/world.tscn" id="1_6gs1o"]
-[ext_resource type="PackedScene" uid="uid://cabgrr2bvykhs" path="res://scenes/Player/spider_bot/spider_bot.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://pqp5cx0ei2tb" path="res://scenes/Player/meat_tank.tscn" id="3_jyhfs"]
 
 [node name="main" type="Node3D"]
 
 [node name="map" parent="." instance=ExtResource("1_6gs1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0446424, -0.0223503, -0.00300026)
 
-[node name="SpiderBot" parent="." groups=["player"] instance=ExtResource("3_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.863834, 0)
+[node name="Meat_tank" parent="." groups=["player"] instance=ExtResource("3_jyhfs")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
