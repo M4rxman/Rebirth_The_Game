@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://dq06rigecugjv"]
 
-[ext_resource type="PackedScene" uid="uid://dg5wyhc4ykoef" path="res://scenes/World/world.tscn" id="1_6gs1o"]
-[ext_resource type="PackedScene" uid="uid://cchcrcrmmrise" path="res://scenes/Player/player.tscn" id="3_2rw73"]
+[ext_resource type="PackedScene" uid="uid://dg5wyhc4ykoef" path="res://Scenes/World/world.tscn" id="1_6gs1o"]
+[ext_resource type="PackedScene" uid="uid://pqp5cx0ei2tb" path="res://Scenes/Player/meat_tank.tscn" id="3_8gbba"]
 
 [node name="main" type="Node3D"]
 
 [node name="map" parent="." instance=ExtResource("1_6gs1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0446424, -0.0223503, -0.00300026)
 
-[node name="player" parent="." instance=ExtResource("3_2rw73")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7078, 18.8744, 21.1171)
+[node name="Meat_tank" parent="." groups=["player", "playergod"] instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87203825, 0, -1.2705698)
