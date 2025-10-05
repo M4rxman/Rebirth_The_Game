@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b1n5rqw53onuo"
-path="res://.godot/imported/spider_bot_model.gltf-33647c907a71a293881d3114216e6def.scn"
+path="res://.godot/imported/spider_bot_model.gltf-1fd171bb5e508e3dbe96d531fd083af2.scn"
 
 [deps]
 
-source_file="res://Scenes/Player/spider_bot/spider_bot_model.gltf"
-dest_files=["res://.godot/imported/spider_bot_model.gltf-33647c907a71a293881d3114216e6def.scn"]
+source_file="res://scenes/Player/spider_bot/spider_bot_model.gltf"
+dest_files=["res://.godot/imported/spider_bot_model.gltf-1fd171bb5e508e3dbe96d531fd083af2.scn"]
 
 [params]
 
