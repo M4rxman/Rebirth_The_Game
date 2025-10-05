@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0yh1kxa3skuo"
-path.s3tc="res://.godot/imported/grass.jpg-f3f86a7f682b13bef0f6f3201a2f1497.s3tc.ctex"
+uid="uid://btwlpdwk2wa6s"
+path.s3tc="res://.godot/imported/ChatGPT_Image_4_._2025_._07_04_38.webp-f18e90ae62aa08fa4d17589a8516e535.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Textures/grass.jpg"
-dest_files=["res://.godot/imported/grass.jpg-f3f86a7f682b13bef0f6f3201a2f1497.s3tc.ctex"]
+source_file="res://Assets/Textures/ChatGPT_Image_4_._2025_._07_04_38.webp"
+dest_files=["res://.godot/imported/ChatGPT_Image_4_._2025_._07_04_38.webp-f18e90ae62aa08fa4d17589a8516e535.s3tc.ctex"]
 
 [params]
 

@@ -11,9 +11,20 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="uid://dq06rigecugjv"
+run/main_scene="uid://lui882s2fj78"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+run/macos_native_icon=""
+
+[autoload]
+
+Globals="*res://globals.gd"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+window/size/resizable=false
 
 [dotnet]
 
